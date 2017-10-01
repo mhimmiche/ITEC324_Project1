@@ -25,6 +25,9 @@ public class VendorFrame {
     private JButton nickelButton = new JButton("$0.05");
     private JButton dimeButton = new JButton("$0.10");
     private JButton quarterButton = new JButton("$0.25");
+    private JTextField username;
+    private JPasswordField password;
+    private JLabel loginLabel;
 
 
     public JFrame vendingFrame() {
@@ -70,9 +73,9 @@ public class VendorFrame {
         userInter.setLayout(new GridLayout(6,0, 10,10));
         JPanel insertMoney = moneyButtons();
         userInter.add(insertMoney);
-        balanceLabel = new JLabel("<html><b>Balance</b><br>$" + balance + "</html>");
+        balanceLabel = new JLabel(String.format("<html><b>Balance</b><br>$%.2f</html>", balance));
         userInter.add(balanceLabel);
-        priceLabel = new JLabel("<html><b>Price</b><br>$0</html>");
+        priceLabel = new JLabel("<html><b>Price</b><br>$0.00</html>");
         userInter.add(priceLabel);
         vendButton = new JButton("Vend");
         vendButton.addActionListener(new vendListener());
@@ -81,6 +84,7 @@ public class VendorFrame {
         cancelButton.addActionListener(new cancelListener());
         userInter.add(cancelButton);
         adminButton = new JButton("Admin");
+        adminButton.addActionListener(new adminListener());
         userInter.add(adminButton);
         return userInter;
     }
@@ -129,6 +133,48 @@ public class VendorFrame {
         price = aPrice;
         String out = String.format("<html><b>Price</b><br>$%.2f</html>", price);
         priceLabel.setText(out);
+    }
+
+    private void createAdminPanel() {
+        username = new JTextField(8);
+        password = new JPasswordField(8);
+        JPanel loginArea = adminLoginPanels();
+        JPanel buttons = adminLoginButtons();
+        JFrame loginFrame = new JFrame();
+        loginFrame.setLayout(new BorderLayout());
+        loginFrame.getRootPane().setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+        loginLabel = new JLabel("Please log in as administrator", SwingConstants.CENTER);
+        loginFrame.getContentPane().add(loginLabel, BorderLayout.NORTH);
+        loginFrame.getContentPane().add(loginArea, BorderLayout.CENTER);
+        loginFrame.getContentPane().add(buttons, BorderLayout.SOUTH);
+        loginFrame.setVisible(true);
+        loginFrame.pack();
+    }
+
+    private JPanel adminLoginButtons() {
+        JPanel loginButtons = new JPanel();
+        JButton login = new JButton("Login");
+        loginButtons.add(login);
+        loginButtons.add(Box.createHorizontalStrut(15));
+        JButton cancel = new JButton("Cancel");
+        loginButtons.add(cancel);
+        return loginButtons;
+    }
+
+    private JPanel adminLoginPanels() {
+        JPanel admin = new JPanel();
+        JPanel usernamePanel = new JPanel();
+        usernamePanel.add(new JLabel("Username:"));
+        usernamePanel.add(Box.createHorizontalStrut(15));
+        usernamePanel.add(username);
+        usernamePanel.add(Box.createHorizontalStrut(15));
+        JPanel pwPanel = new JPanel();
+        pwPanel.add(new JLabel("Password:"));
+        pwPanel.add(Box.createHorizontalStrut(15));
+        pwPanel.add(password);
+        admin.add(usernamePanel);
+        admin.add(pwPanel);
+        return admin;
     }
 
     private class moneyListener implements ActionListener {
@@ -198,6 +244,13 @@ public class VendorFrame {
             prodBoughtLabel.setText(String.format("<html><b>Product Bought:</b><br>%s</html>", "N/A"));
             productSelected = "";
             messageLabel.setText("Thank you, come again!");
+        }
+    }
+
+    private class adminListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            createAdminPanel();
         }
     }
 }

@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5610caac-ad1a-4861-b234-f61967cb7e54" name="Default" comment="test commit">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Inventory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Product.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Driver.java" afterPath="$PROJECT_DIR$/src/Driver.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/VendorFrame.java" afterPath="$PROJECT_DIR$/src/VendorFrame.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -31,10 +28,12 @@
       <file leaf-file-name="VendorFrame.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/VendorFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1609">
-              <caret line="80" column="59" lean-forward="false" selection-start-line="80" selection-start-column="59" selection-end-line="80" selection-end-column="59" />
+            <state relative-caret-position="2363">
+              <caret line="139" column="39" lean-forward="false" selection-start-line="139" selection-start-column="39" selection-end-line="139" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#10358#10359#0" expanded="true" />
+                <element signature="e#10400#10401#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -44,7 +43,7 @@
         <entry file="file://$PROJECT_DIR$/src/Inventory.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-306">
-              <caret line="0" column="12" lean-forward="true" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
+              <caret line="0" column="12" lean-forward="false" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
               <folding>
                 <element signature="e#1154#1155#0" expanded="true" />
                 <element signature="e#1200#1201#0" expanded="true" />
@@ -57,7 +56,7 @@
         <entry file="file://$PROJECT_DIR$/src/Product.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="22" lean-forward="true" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
+              <caret line="0" column="22" lean-forward="false" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
               <folding>
                 <element signature="e#276#277#0" expanded="true" />
                 <element signature="e#303#304#0" expanded="true" />
@@ -168,7 +167,8 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -295,7 +295,7 @@
       <option name="presentableId" value="Default" />
       <updated>1505959610188</updated>
       <workItem from="1505959616394" duration="1741000" />
-      <workItem from="1506806008716" duration="15616000" />
+      <workItem from="1506806008716" duration="19004000" />
     </task>
     <task id="LOCAL-00001" summary="adding vcs">
       <created>1505960309511</created>
@@ -360,11 +360,18 @@
       <option name="project" value="LOCAL" />
       <updated>1505961356131</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="test commit">
+      <created>1506876819611</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1506876819611</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17357000" />
+    <option name="totallyTimeSpent" value="20745000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -434,7 +441,7 @@
     <entry file="file://$PROJECT_DIR$/src/Product.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="22" lean-forward="true" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
+          <caret line="0" column="22" lean-forward="false" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
           <folding>
             <element signature="e#276#277#0" expanded="true" />
             <element signature="e#303#304#0" expanded="true" />
@@ -447,7 +454,7 @@
     <entry file="file://$PROJECT_DIR$/src/Inventory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-306">
-          <caret line="0" column="12" lean-forward="true" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
+          <caret line="0" column="12" lean-forward="false" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
           <folding>
             <element signature="e#1154#1155#0" expanded="true" />
             <element signature="e#1200#1201#0" expanded="true" />
@@ -457,10 +464,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/VendorFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1609">
-          <caret line="80" column="59" lean-forward="false" selection-start-line="80" selection-start-column="59" selection-end-line="80" selection-end-column="59" />
+        <state relative-caret-position="2363">
+          <caret line="139" column="39" lean-forward="false" selection-start-line="139" selection-start-column="39" selection-end-line="139" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#10358#10359#0" expanded="true" />
+            <element signature="e#10400#10401#0" expanded="true" />
           </folding>
         </state>
       </provider>
