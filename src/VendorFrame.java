@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class VendorFrame {
 
+    private AdminController adminControl = new AdminController();
     private Inventory inventoryManager = new Inventory();
     private double balance = 0;
     private double price = 0;
@@ -28,6 +29,7 @@ public class VendorFrame {
     private JTextField username;
     private JPasswordField password;
     private JLabel loginLabel;
+    private JFrame loginFrame;
 
 
     public JFrame vendingFrame() {
@@ -140,7 +142,7 @@ public class VendorFrame {
         password = new JPasswordField(8);
         JPanel loginArea = adminLoginPanels();
         JPanel buttons = adminLoginButtons();
-        JFrame loginFrame = new JFrame();
+        loginFrame = new JFrame();
         loginFrame.setLayout(new BorderLayout());
         loginFrame.getRootPane().setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
         loginLabel = new JLabel("Please log in as administrator", SwingConstants.CENTER);
@@ -154,9 +156,11 @@ public class VendorFrame {
     private JPanel adminLoginButtons() {
         JPanel loginButtons = new JPanel();
         JButton login = new JButton("Login");
+        login.addActionListener(new adminLoginListener());
         loginButtons.add(login);
         loginButtons.add(Box.createHorizontalStrut(15));
         JButton cancel = new JButton("Cancel");
+        cancel.addActionListener(new adminLoginListener());
         loginButtons.add(cancel);
         return loginButtons;
     }
@@ -251,6 +255,24 @@ public class VendorFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             createAdminPanel();
+        }
+    }
+
+    private class adminLoginListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String selection = e.getActionCommand();
+            boolean isValid = adminControl.validateCreds(username.getText(), password.getPassword());
+            if (selection.equals("Login")) {
+                if (username.getText().equals("") || password.getPassword().length == 0 || !isValid) {
+                    loginLabel.setText("Error logging in");
+                    loginLabel.setForeground(Color.RED);
+                } else {
+                    //System.out.println(adminControl.validateCreds(username.getText(), password.getPassword()));
+                }
+            } else {
+                loginFrame.dispose();
+            }
         }
     }
 }
