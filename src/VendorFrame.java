@@ -3,11 +3,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class VendorFrame {
 
     private AdminController adminControl = new AdminController();
     private Inventory inventoryManager = new Inventory();
+    private HashMap<String, JComboBox> updateInv = new HashMap<>();
+    private int MAX_PRODUCT_NUM = 15;
+    private Integer[] productValues = new Integer[MAX_PRODUCT_NUM + 1];
     private double balance = 0;
     private double price = 0;
     private double change = 0;
@@ -30,8 +34,13 @@ public class VendorFrame {
     private JPasswordField password;
     private JLabel loginLabel;
     private JFrame loginFrame;
+    private JFrame adminOps;
+    private JLabel currentMoneyLabel;
 
 
+    public VendorFrame() {
+
+    }
     public JFrame vendingFrame() {
         JFrame vendFrame = new JFrame("Mehdi Himmiche | Vending Maching");
         vendFrame.setLayout(new BorderLayout());
@@ -181,6 +190,73 @@ public class VendorFrame {
         return admin;
     }
 
+    private void adminOperations() {
+        adminOps = new JFrame("Administrator Frame");
+        adminOps.getRootPane().setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+        JTabbedPane adminPane = new JTabbedPane();
+        adminPane.addTab("Withdraw $", withdrawMoney());
+        adminPane.addTab("Update Inventory", updateInventoryPanel());
+        adminOps.getContentPane().add(adminPane);
+        adminOps.setVisible(true);
+        adminOps.pack();
+    }
+
+    private JPanel withdrawMoney() {
+        JPanel withdraw = new JPanel();
+        currentMoneyLabel = new JLabel(String.format("<html>Current Available Money in Machine:<b>$%.2f</html>", moneyInMachine));
+        withdraw.add(currentMoneyLabel);
+        withdraw.add(Box.createHorizontalStrut(15));
+        JButton withdrawButton = new JButton("withdraw funds");
+        withdrawButton.addActionListener(new withdrawMoneyListen());
+        withdraw.add(withdrawButton);
+        return withdraw;
+    }
+
+    private JPanel updateInventoryPanel() {
+        for (int i = 0; i < productValues.length; i++) {
+            productValues[i] = i;
+        }
+        populateHashMap(productValues);
+        JPanel update = new JPanel();
+        update.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+        update.setLayout(new BoxLayout(update,BoxLayout.Y_AXIS));
+        for (String prod : updateInv.keySet()) {
+            JPanel row = new JPanel();
+            row.add(new JLabel(prod + ":"));
+            row.add(Box.createHorizontalStrut(15));
+            row.add(updateInv.get(prod));
+            update.add(row);
+        }
+
+        return update;
+    }
+
+    private void populateHashMap(Integer[] possibleValues) {
+        for (JButton button : productButtons) {
+            JComboBox prodAvail = new JComboBox(possibleValues);
+            prodAvail.setSelectedIndex(inventoryManager.getQuantity(button.getText()));
+            updateInv.put(button.getText(), prodAvail);
+        }
+    }
+
+    private void checkProducts() {
+        for (JButton prodButton : productButtons) {
+            if (inventoryManager.checkProductAvailability(prodButton.getText())) {
+                prodButton.setEnabled(true);
+            } else {
+                prodButton.setEnabled(false);
+            }
+        }
+    }
+
+    private class withdrawMoneyListen implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            moneyInMachine = 0;
+            currentMoneyLabel.setText(String.format("<html>Current Available Money in Machine:<b>$%.2f</html>", moneyInMachine));
+        }
+    }
+
     private class moneyListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -220,18 +296,19 @@ public class VendorFrame {
         public void actionPerformed(ActionEvent e) {
             if (price <= balance && balance > 0.0 && inventoryManager.vendProduct(productSelected)) {
                 change = balance - price;
-                balance -= price;
+                balance = 0;
                 moneyInMachine += price;
                 changeLabel.setText(String.format("<html><b>Change</b><br>$%.2f</html>", change));
                 updatePriceLabel(0);
                 updateBalanceLabel();
+                checkProducts();
                 prodBoughtLabel.setText(String.format("<html><b>Product Bought:</b><br>%s</html>", productSelected));
                 productSelected = "";
                 messageLabel.setText("Thank you for using my vending machine!");
             } else {
                 changeLabel.setText(String.format("<html><b>Change</b><br>$%.2f</html>", 0.0));
                 prodBoughtLabel.setText(String.format("<html><b>Product Bought:</b><br>%s</html>", "N/A"));
-                messageLabel.setText("<html>Error vending product. If you have enough funds and the error persists, there may not be enough \"" + productSelected + "\" in the machine." +
+                messageLabel.setText("<html>Error vending product. Ensure you have enough funds" +
                         "<br>Press \"Cancel\" to cancel this operation or select a different product.</html>");
             }
         }
@@ -268,7 +345,8 @@ public class VendorFrame {
                     loginLabel.setText("Error logging in");
                     loginLabel.setForeground(Color.RED);
                 } else {
-                    //System.out.println(adminControl.validateCreds(username.getText(), password.getPassword()));
+                    loginFrame.dispose();
+                    adminOperations();
                 }
             } else {
                 loginFrame.dispose();

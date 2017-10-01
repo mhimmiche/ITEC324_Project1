@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Inventory {
-    private String[] defaultProducts = {"Coca-Cola","Pepsi","Sprite","Water","Dr. Pepper", "Coke Zero", "Diet Coke"};
+    private String[] defaultProducts = {"Coca-Cola","Pepsi","Sprite","Water","Dr. Pepper", "Coke Zero", "Diet Coke", "Cherry Coke"};
     private HashMap<Product, Integer> productInventory = new HashMap<>();
     private int quantity = 1;
     public Inventory() {
@@ -10,9 +10,25 @@ public class Inventory {
         }
     }
 
-    /*public void addProductQuantity(String aProd) {
-        productInventory.add(aProd);
-    }*/
+    public int getQuantity(String aName) {
+        Product temp = new Product();
+        for (Product names : productInventory.keySet()) {
+            if (names.getName().equals(aName)) {
+                temp = names;
+            }
+        }
+        return productInventory.get(temp);
+    }
+
+    public boolean checkProductAvailability(String aName) {
+        Product temp = new Product();
+        for (Product names : productInventory.keySet()) {
+            if (names.getName().equals(aName)) {
+                temp = names;
+            }
+        }
+        return (productInventory.get(temp) > 0);
+    }
 
     public ArrayList<String> getProductInventory() {
         ArrayList<String> productNames = new ArrayList<>();
