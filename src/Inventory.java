@@ -20,6 +20,15 @@ public class Inventory {
         return productInventory.get(temp);
     }
 
+    public void updateProductAvailability(String aName, int aQuantity) {
+        for (Map.Entry<Product,Integer> mapIter : productInventory.entrySet()) {
+            Product prod = mapIter.getKey();
+            if (prod.getName().equals(aName)) {
+                mapIter.setValue(aQuantity);
+            }
+        }
+    }
+
     public boolean checkProductAvailability(String aName) {
         Product temp = new Product();
         for (Product names : productInventory.keySet()) {

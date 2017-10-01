@@ -227,7 +227,12 @@ public class VendorFrame {
             row.add(updateInv.get(prod));
             update.add(row);
         }
-
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new BorderLayout());
+        JButton updateInv = new JButton("Update Inventory");
+        updateInv.addActionListener(new updateInventoryListener());
+        buttonPanel.add(updateInv, BorderLayout.EAST);
+        update.add(buttonPanel);
         return update;
     }
 
@@ -254,6 +259,16 @@ public class VendorFrame {
         public void actionPerformed(ActionEvent e) {
             moneyInMachine = 0;
             currentMoneyLabel.setText(String.format("<html>Current Available Money in Machine:<b>$%.2f</html>", moneyInMachine));
+        }
+    }
+
+    private class updateInventoryListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            for (String prod : updateInv.keySet()) {
+                inventoryManager.updateProductAvailability(prod, (int)updateInv.get(prod).getSelectedItem());
+                checkProducts();
+            }
         }
     }
 
