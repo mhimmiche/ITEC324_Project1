@@ -6,6 +6,7 @@ import org.w3c.dom.NodeList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.*;
+import java.nio.file.Paths;
 
 /**
  * AdministratorController class to handle logging in to the vending machine.
@@ -34,11 +35,11 @@ public class AdminController {
 
     /**
      * Read the XML file containing the login information
+     * Storing the info in an XML file because I was lazy to spin up a DB...
      */
     private void readXML() {
         try {
-
-            File fXmlFile = new File("src\\users.xml");
+            File fXmlFile = Paths.get(".","users.xml").normalize().toFile();
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(fXmlFile);
