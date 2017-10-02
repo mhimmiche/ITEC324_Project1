@@ -82,9 +82,9 @@ public class Inventory {
     }
 
     /**
-     * 
-     * @param prodName
-     * @return
+     * Get the price of a specified product
+     * @param prodName product name
+     * @return price
      */
     public double getProductPrice(String prodName) {
         double productPrice = 0;
@@ -96,10 +96,19 @@ public class Inventory {
         return productPrice;
     }
 
+    /**
+     * Determine how many products are to be sold
+     * @return number of products
+     */
     public int getProductNumber() {
         return productInventory.size();
     }
 
+    /**
+     * Check through the product inventory and determine if a product can be sold
+     * @param aProdName product name
+     * @return if a product can be sold
+     */
     public boolean vendProduct(String aProdName) {
         boolean canVend = false;
         for (Map.Entry<Product,Integer> mapIter : productInventory.entrySet()) {

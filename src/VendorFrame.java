@@ -5,6 +5,11 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Vendor frame to create the GUI of the vending machine.
+ *
+ * @author Mehdi Himmiche
+ */
 public class VendorFrame {
 
     private AdminController adminControl = new AdminController();
@@ -37,10 +42,10 @@ public class VendorFrame {
     private JFrame adminOps;
     private JLabel currentMoneyLabel;
 
-
-    public VendorFrame() {
-
-    }
+    /**
+     * Create the initial frame of the vending machine
+     * @return vending machine frame
+     */
     public JFrame vendingFrame() {
         JFrame vendFrame = new JFrame("Mehdi Himmiche | Vending Maching");
         vendFrame.setLayout(new BorderLayout());
@@ -61,6 +66,10 @@ public class VendorFrame {
         return vendFrame;
     }
 
+    /**
+     * Create the area containing the buttons of the options
+     * @return JPanel with product buttons
+     */
     private JPanel productVendArea() {
         JPanel productsToVend = new JPanel();
         productsToVend.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -78,6 +87,10 @@ public class VendorFrame {
         return productsToVend;
     }
 
+    /**
+     * Create the interaction area on the side of the vending machine (vend, cancel, add coins)
+     * @return interaction buttons
+     */
     private JPanel interactionArea() {
         JPanel userInter = new JPanel();
         userInter.setBorder(BorderFactory.createEmptyBorder(10, 10, 25, 15));
@@ -100,6 +113,10 @@ public class VendorFrame {
         return userInter;
     }
 
+    /**
+     * Create the buttons for each available coin
+     * @return coin buttons
+     */
     private JPanel moneyButtons() {
         JPanel moneyIn = new JPanel();
         centButton.addActionListener(new moneyListener());
@@ -114,11 +131,15 @@ public class VendorFrame {
         return moneyIn;
     }
 
+    /**
+     * Create the area at the bottom of the vending machine with general information.
+     * @return general information tab
+     */
     private JPanel messageArea() {
         JPanel message = new JPanel();
         message.setLayout(new GridLayout(0,2,5,5));
         JPanel changePanel = new JPanel();
-        changePanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,5));
+        changePanel.setBorder(BorderFactory.createEmptyBorder(10,10,25,5));
         changePanel.setLayout(new GridLayout(0,2));
         changeLabel = new JLabel("<html><b>Change</b><br>$0.00</html>");
         changePanel.add(changeLabel);
@@ -126,26 +147,41 @@ public class VendorFrame {
         changePanel.add(prodBoughtLabel);
         message.add(changePanel);
         messageLabel = new JLabel("Insert Coins to Purchase Product",SwingConstants.CENTER);
+        messageLabel.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(),BorderFactory.createLoweredBevelBorder()));
         message.add(messageLabel);
         return message;
     }
 
+    /**
+     * add money to available balance
+     * @param aBalance coins inserted
+     */
     private void addToBalance(double aBalance) {
         balance += aBalance;
         String out = String.format("<html><b>Balance</b><br>$%.2f</html>", balance);
         balanceLabel.setText(out);
     }
 
+    /**
+     * Update the label of the balance
+     */
     private void updateBalanceLabel() {
         balanceLabel.setText(String.format("<html><b>Balance</b><br>$%.2f</html>", balance));
     }
 
+    /**
+     * Update the label of the price section
+     * @param aPrice price of a product
+     */
     private void updatePriceLabel(double aPrice) {
         price = aPrice;
         String out = String.format("<html><b>Price</b><br>$%.2f</html>", price);
         priceLabel.setText(out);
     }
 
+    /**
+     * Create the admin frame that pops up to login
+     */
     private void createAdminPanel() {
         username = new JTextField(8);
         password = new JPasswordField(8);
@@ -162,6 +198,10 @@ public class VendorFrame {
         loginFrame.pack();
     }
 
+    /**
+     * Create the login buttons
+     * @return panel with login buttons
+     */
     private JPanel adminLoginButtons() {
         JPanel loginButtons = new JPanel();
         JButton login = new JButton("Login");
@@ -174,6 +214,10 @@ public class VendorFrame {
         return loginButtons;
     }
 
+    /**
+     * text areas to input username and password to login
+     * @return JPanel with login inputs
+     */
     private JPanel adminLoginPanels() {
         JPanel admin = new JPanel();
         JPanel usernamePanel = new JPanel();
@@ -190,6 +234,9 @@ public class VendorFrame {
         return admin;
     }
 
+    /**
+     * Create the frame that pops up once an admin has successfully logged in
+     */
     private void adminOperations() {
         adminOps = new JFrame("Administrator Frame");
         adminOps.getRootPane().setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
@@ -201,6 +248,10 @@ public class VendorFrame {
         adminOps.pack();
     }
 
+    /**
+     * Create the panel to allow admin to withdraw money from the vending machine
+     * @return withdraw panel
+     */
     private JPanel withdrawMoney() {
         JPanel withdraw = new JPanel();
         currentMoneyLabel = new JLabel(String.format("<html>Current Available Money in Machine:<b>$%.2f</html>", moneyInMachine));
@@ -212,6 +263,10 @@ public class VendorFrame {
         return withdraw;
     }
 
+    /**
+     * create the panel to allow the admin to update the quantity of each product
+     * @return product update panel
+     */
     private JPanel updateInventoryPanel() {
         for (int i = 0; i < productValues.length; i++) {
             productValues[i] = i;
@@ -236,6 +291,10 @@ public class VendorFrame {
         return update;
     }
 
+    /**
+     * Update a hash map used to store the products and a JComboBox for each one
+     * @param possibleValues values for quantity
+     */
     private void populateHashMap(Integer[] possibleValues) {
         for (JButton button : productButtons) {
             JComboBox prodAvail = new JComboBox(possibleValues);
@@ -244,6 +303,9 @@ public class VendorFrame {
         }
     }
 
+    /**
+     * Turn the button off if the machine runs out of quantity for the products
+     */
     private void checkProducts() {
         for (JButton prodButton : productButtons) {
             if (inventoryManager.checkProductAvailability(prodButton.getText())) {
@@ -254,6 +316,9 @@ public class VendorFrame {
         }
     }
 
+    /**
+     * Action listener for the withdraw money button
+     */
     private class withdrawMoneyListen implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -262,6 +327,9 @@ public class VendorFrame {
         }
     }
 
+    /**
+     * Listener for the update inventory button
+     */
     private class updateInventoryListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -272,6 +340,9 @@ public class VendorFrame {
         }
     }
 
+    /**
+     * Listener for the available coins buttons
+     */
     private class moneyListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -296,6 +367,9 @@ public class VendorFrame {
         }
     }
 
+    /**
+     * Listener for the buttons for the products - it updates the price label
+     */
     private class productListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -306,6 +380,10 @@ public class VendorFrame {
         }
     }
 
+    /**
+     * Listener for the vend button
+     * It checks availability of the product, balance, and price, and returns appropriately
+     */
     private class vendListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -329,6 +407,9 @@ public class VendorFrame {
         }
     }
 
+    /**
+     * Listener for the cancel button
+     */
     private class cancelListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -343,6 +424,9 @@ public class VendorFrame {
         }
     }
 
+    /**
+     * Listener for the admin button
+     */
     private class adminListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -350,6 +434,9 @@ public class VendorFrame {
         }
     }
 
+    /**
+     * Listener for the login button to determine if user can login
+     */
     private class adminLoginListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
