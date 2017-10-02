@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5610caac-ad1a-4861-b234-f61967cb7e54" name="Default" comment="test commit">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Inventory.java" afterPath="$PROJECT_DIR$/src/Inventory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Product.java" afterPath="$PROJECT_DIR$/src/Product.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/VendorFrame.java" afterPath="$PROJECT_DIR$/src/VendorFrame.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -29,12 +27,12 @@
       <file leaf-file-name="VendorFrame.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/VendorFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="437" column="67" lean-forward="false" selection-start-line="437" selection-start-column="67" selection-end-line="437" selection-end-column="67" />
+            <state relative-caret-position="57">
+              <caret line="14" column="35" lean-forward="false" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#16569#16570#0" expanded="true" />
-                <element signature="e#16611#16612#0" expanded="true" />
+                <element signature="e#16976#16977#0" expanded="true" />
+                <element signature="e#17018#17019#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -398,7 +396,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32327000" />
+    <option name="totallyTimeSpent" value="32669000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -510,8 +508,8 @@
           <caret line="11" column="21" lean-forward="true" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#16569#16570#0" expanded="true" />
-            <element signature="e#16611#16612#0" expanded="true" />
+            <element signature="e#16976#16977#0" expanded="true" />
+            <element signature="e#17018#17019#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -590,8 +588,8 @@
           <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#16569#16570#0" expanded="true" />
-            <element signature="e#16611#16612#0" expanded="true" />
+            <element signature="e#16976#16977#0" expanded="true" />
+            <element signature="e#17018#17019#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -642,8 +640,8 @@
           <caret line="11" column="21" lean-forward="true" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#16569#16570#0" expanded="true" />
-            <element signature="e#16611#16612#0" expanded="true" />
+            <element signature="e#16976#16977#0" expanded="true" />
+            <element signature="e#17018#17019#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -718,12 +716,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/VendorFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="437" column="67" lean-forward="false" selection-start-line="437" selection-start-column="67" selection-end-line="437" selection-end-column="67" />
+        <state relative-caret-position="57">
+          <caret line="14" column="35" lean-forward="false" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#16569#16570#0" expanded="true" />
-            <element signature="e#16611#16612#0" expanded="true" />
+            <element signature="e#16976#16977#0" expanded="true" />
+            <element signature="e#17018#17019#0" expanded="true" />
           </folding>
         </state>
       </provider>

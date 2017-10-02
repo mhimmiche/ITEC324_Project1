@@ -12,17 +12,22 @@ import java.util.HashMap;
  */
 public class VendorFrame {
 
+    private int MAX_PRODUCT_NUM = 25;
+
+    // Declare other classes
     private AdminController adminControl = new AdminController();
     private Inventory inventoryManager = new Inventory();
+    // Create a hashmap to store the products and a combo box for each
     private HashMap<String, JComboBox> updateInv = new HashMap<>();
-    private int MAX_PRODUCT_NUM = 15;
+    // decided the maximum value per product that can be stored is MAX_PRODUCT_NUM - can change it later easily by modifying a single parameter
     private Integer[] productValues = new Integer[MAX_PRODUCT_NUM + 1];
     private double balance = 0;
     private double price = 0;
     private double change = 0;
     private double moneyInMachine = 0;
-    private String productSelected;
-    private ArrayList<JButton> productButtons;
+    private String productSelected; // Determine the product selected
+    private ArrayList<JButton> productButtons; // Store the buttons in an arraylist - used an arraylist to allow admin to add products
+    // Declaring the labels and buttons
     private JLabel balanceLabel;
     private JLabel priceLabel;
     private JLabel changeLabel;
